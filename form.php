@@ -14,7 +14,9 @@
         if($res->num_rows > 0){
             $_SESSION['type_admin'] = true;
             header("location:index.php");
-        }   
+        } else {
+            $_SESSION["type_admin"] = false;
+        }
     }
 ?>
 
