@@ -5,6 +5,12 @@
     <script src="./assets/js/jquery-3.7.1.min.js"></script>
     <!-- apex-chart-link -->
     <script src="./assets/js/apexcharts.js"></script>
+    <!-- alpine js -->
+     <script src="./assets/js/alpine.min.js"></script>
+     <script src="./assets/js/alpine-collaspe.min.js"></script>
+     <script src="./assets/js/alpine-ui.min.js"></script>
+     <script src="./assets/js/alpine-persist.min.js"></script>
+     <script src="./assets/js/alpine-focus.min.js"></script>
     <!-- base-line-charts-js-link -->
     <script src="./assets/js/basic-line-chart.js"></script>
     <script>
