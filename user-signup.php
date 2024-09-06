@@ -5,21 +5,17 @@
     $db = new DBConnection;
     $conn = $db->conn;
 
-    if(isset($_REQUEST["logout"])){
-        session_destroy();
-    }
-
     if(isset($_REQUEST["save"])){
+        $fname = $_REQUEST["fname"];
+        $lname = $_REQUEST["lname"];
         $email = $_REQUEST["email"];
-        $password = $_REQUEST["pass"];
+        $pass = $_REQUEST["pass"];
 
-        $res = $conn->query("SELECT * FROM `admins` WHERE username='$email' AND password='$password'");
-        
-        if($res->num_rows > 0){
-            $_SESSION['type_admin'] = true;
+        $result = $conn->query("INSERT INTO `users` (`fname`, `lname`, `email`, `password`) VALUES ( '$fname', '$lname', '$email', '$pass')");
+
+        if($result){
+            $_SESSION['type_user'] = true;
             header("location:index.php");
-        } else {
-            $_SESSION["type_admin"] = false;
         }
     }
 ?>
@@ -34,14 +30,17 @@
     <!-- font-css-link -->
     <link rel="stylesheet" href="./assets/fonts/stylesheet.css">
     <!-- form-style-css-link -->
-    <link rel="stylesheet" href="./assets/css/form.css">
+    <link rel="stylesheet" href="./assets/css/users.css">
+
     <!-- media-query-link -->
-     <link rel="stylesheet" href="./assets/css/media.css">
+    <link rel="stylesheet" href="./assets/css/media.css">
     <!-- Favicon-link -->
     <link rel="icon" type="image/x-icon" href="./assets/images/logo.svg">
     <!-- remix-icon-cdn -->
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet" />
+
 </head>
+
 
 <body>
     <main>
@@ -51,6 +50,22 @@
                 <h5>Enter your email and password to login</h5>
                 <div class="form">
                     <form action="" method="post">
+                        <!-- firstname -->
+                        <div class="position-rel margin-b-10">
+                            <label for="firstname">Firstname</label>
+                            <input type="text" id="firstname" name="fname" placeholder="Enter Your First Name" required>
+                            <span><i class="ri-user-line"></i></span>
+                        </div>
+                        
+                        
+                        <!-- lastname -->
+                        <div class="position-rel margin-b-10">
+                            <label for="lastname">Lastname</label>
+                            <input type="text" id="lastname" name="lname" placeholder="Enter Your Last Name" required>
+                            <span><i class="ri-profile-line"></i></span>
+                        </div>
+
+
                         <!-- email -->
                         <div class="position-rel margin-b-10">
                             <label for="email">Email</label>
@@ -93,59 +108,20 @@
                                 </path>
                             </svg>
                         </div>
+
                         <!-- checkbox -->
                         <div class="checkbox flex gap-10">
                             <input type="checkbox" id="check">
-                            <label for="check">Subscribe to weekly newsletter</label>
+                            <label for="check">Give me updates about latest </label>
                         </div>
                         <button type="submit" name="save">SIGN IN</button>
                     </form>
-                    <div class="OR">
-                        <span>OR</span>
-                    </div>
-                    <ul class="flex-wrap gap-10 justify-center">
-                        <!-- instagram -->
-                        <li>
-                            <a href="">
-                                <i class="ri-instagram-line"></i>
-                            </a>
-                        </li>
-                        <!-- facebook -->
-                        <li>
-                            <a href="">
-                                <i class="ri-facebook-circle-fill"></i>
-                            </a>
-                        </li>
-                        <!-- twitter -->
-                        <li>
-                            <a href="">
-                                <i class="ri-twitter-fill"></i>
-                            </a>
-                        </li>
-                        <!-- google -->
-                        <li>
-                            <a href="">
-                                <i class="ri-google-fill"></i>
-                            </a>
-                        </li>
-                    </ul>
-                    <p>Don't have an account ? <a href="./user-signup.php">SIGN UP</a></p>
                 </div>
+
             </div>
         </div>
-        <div class="object-1">
-            <img src="./assets/images/login-images/coming-soon-object1.png" alt="image">
-        </div>
-        <div class="object-2">
-            <img src="./assets/images/login-images/coming-soon-object2.png" alt="image">
-        </div>
-        <div class="object-3">
-            <img src="./assets/images/login-images/coming-soon-object3.png" alt="image">
-        </div>
-        <div class="object-4">
-            <img src="./assets/images/login-images/polygon-object.svg" alt="image">
-        </div>
     </main>
+
 </body>
 
 </html>

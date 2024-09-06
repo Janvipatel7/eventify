@@ -1,5 +1,10 @@
 <?php 
     session_start();
+
+    include "./db-connect.php";
+    $db = new DBConnection;
+    $conn = $db->conn;
+
     if(!isset($_SESSION['type_admin'])){
         header('location:form.php');
         exit;
@@ -27,8 +32,7 @@
 </head>
 
 <body>
-    <main class="">
-        <aside>
+   <aside>
             <div class="sidebar-tittle flex-wrap item-center">
                 <div class="logo">
                     <img src="./assets/images/logo.svg" alt="Logo" width="32px">
@@ -78,6 +82,7 @@
                     <h6>- Crypto</h6>
                 </div>
                 <!-- applications -->
+                 
                 <h2>
                     PAGES
                 </h2>
@@ -116,9 +121,9 @@
                     </h5>
                 </div>
             </div>
-        </aside>
+    </aside> 
         <!-- main-container -->
-        <div class="main-container">
+    <div class="main-container">
             <header>
                 <nav class="flex-wrap space-btw flex-nowrap">
                     <!-- left-side-navbar -->
@@ -328,7 +333,7 @@
                                         </p>
                                     </div>
                                     <hr>
-                                    <a href="./form.php" class="sign-out flex-wrap gap-10 item-center margin-t-10">
+                                    <a href="./form.php?logout=1" class="sign-out flex-wrap gap-10 item-center margin-t-10">
                                         <div>
                                             <svg class="h-4.5 w-4.5 rotate-90 ltr:mr-2 rtl:ml-2 flex" width="18"
                                                 height="18" viewBox="0 0 24 24" fill="none"
@@ -352,4 +357,4 @@
                     </div>
                 </nav>
             </header>
-            <div class="main-content"></div>
+    <div class="main-content">
